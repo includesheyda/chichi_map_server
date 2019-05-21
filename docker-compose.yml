@@ -1,0 +1,24 @@
+version: '3'
+services:
+  user-management:
+    container_name: ${SERVICE_NAME}
+    restart: always
+    build:
+      context: .
+    command: /usr/local/bin/gunicorn  -b 0.0.0.0:${MICRO_EXPOSE_PORT}  --config  gunicorn_config.py   app:app
+    ports:
+      - ${MICRO_EXPOSE_PORT}:${MICRO_EXPOSE_PORT}
+  user-db:
+    container_name: ${DATABASE_CONTAINER_NAME}
+    image: mongo
+    volumes:
+      - dbvolume:/data/db
+    command: mongod --port ${MicroService_Mongo_PORT}  --auth
+    ports:
+      - ${MicroService_Mongo_PORT}:${MicroService_Mongo_PORT}
+volumes:
+   dbvolume:
+     external:
+       name: ${VolumeName}
+
+

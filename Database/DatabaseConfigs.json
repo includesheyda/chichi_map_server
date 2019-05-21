@@ -1,0 +1,6 @@
+{
+  "MicroServiceManagementURl" : "https://www.chichiapp.ir:3000",
+  "DatabaseName": "UserManagement",
+  "UserCollection": "User",
+  "Service": "ServiceInfo"
+}
